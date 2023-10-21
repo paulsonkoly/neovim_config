@@ -1,4 +1,5 @@
 require("pls.remap")
+require("pls.snippets")
 
 vim.opt.number = true
 vim.opt.relativenumber = true
