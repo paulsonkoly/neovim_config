@@ -1,11 +1,11 @@
 local ls = require("luasnip")
 
 local s = ls.snippet
---local sn = ls.snippet_node
--- local t = ls.text_node
+local sn = ls.snippet_node
+local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
---local c = ls.choice_node
+local c = ls.choice_node
 --local d = ls.dynamic_node
 -- local r = ls.restore_node
 -- local l = require("luasnip.extras").lambda
@@ -29,6 +29,14 @@ local function arguments_to_declarations(arg_string)
     table.insert(result, "  @" .. arg .. " = " .. arg)
   end
   return result
+end
+
+local function factory_bot_choices(index)
+  return c(index, {
+    t(""),
+    sn(nil, { t("create(:"), i(1), t(")") }),
+    sn(nil, { t("build(:"), i(1), t(")") }),
+  })
 end
 
 ls.add_snippets("ruby",
@@ -58,6 +66,37 @@ ls.add_snippets("ruby",
          end
         ]],
         { i(1, "v"), i(0) }
+      )
+    ),
+    s("cont",
+      fmt(
+        [[
+        context "{} {}" do
+          {}
+        end
+        ]],
+        { c(1, { t("when"), t("with"), t("without") }), i(2), i(0) }
+      )
+    ),
+    s("desc",
+      fmt(
+        [[
+        describe "{}" do
+          {}
+        end
+        ]],
+        { i(1), i(0) }
+      )
+    ),
+    s("subj", fmt("subject {{ {} }}", { factory_bot_choices(1) })),
+    s("let", fmt("let(:{}) {{ {} }}", { i(1, "symbol"), factory_bot_choices(2) })),
+    s("it",
+      fmt(
+        [[
+        it "{}" do
+          {}
+        end
+        ]], { i(1), i(0) }
       )
     ),
     s("iiexp", fmt("it {{ is_expected.to {} }}", { i(0) })),
