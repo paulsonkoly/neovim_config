@@ -141,6 +141,7 @@ ls.add_snippets("ruby",
         end
         ]], { f(file_name_classified), i(0) }
       )
-    )
+    ),
+    s("frozen", t({"# frozen_string_literal: true", ""}))
   }
 )
