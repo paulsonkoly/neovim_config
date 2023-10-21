@@ -100,7 +100,9 @@ ls.add_snippets("ruby",
       )
     ),
     s("iiexp", fmt("it {{ is_expected.to {} }}", { i(0) })),
-    s("exp", fmt("expect({}).to {}", { i(1, "object"), i(0) })
-    )
+    s("exp", fmt("expect({}).to {}", { i(1, "object"), i(0) })),
+    s("r", fmt("attr_reader :{}", i(0))),
+    s("w", fmt("attr_writer :{}", i(0))),
+    s("rw", fmt("attr_accessor :{}", i(0))),
   }
 )
