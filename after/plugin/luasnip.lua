@@ -7,7 +7,7 @@ ls.config.set_config({
   ext_opts = {
     [types.choiceNode] = {
       active = {
-        virt_text = { { "<-", "choices available" } }
+        virt_text = { { "choices available", "Error" } }
       }
     }
   }
