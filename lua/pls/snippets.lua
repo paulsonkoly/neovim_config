@@ -39,6 +39,16 @@ local function factory_bot_choices(index)
   })
 end
 
+local function file_name_classified()
+  local str = vim.api.nvim_buf_get_name(0)
+  str = vim.fs.basename(str)
+  local replace = { { "[.]rb", "" }, { "^(.)", string.upper }, { "_(.)", string.upper } }
+  for _, repl in ipairs(replace) do
+    str = string.gsub(str, repl[1], repl[2])
+  end
+  return str
+end
+
 ls.add_snippets("ruby",
   {
     s("defi",
@@ -56,6 +66,16 @@ ls.add_snippets("ruby",
           end, 1),
           i(0)
         }
+      )
+    ),
+    s("do",
+      fmt(
+        [[
+        do
+           {}
+         end
+        ]],
+        { i(0) }
       )
     ),
     s("dov",
@@ -104,5 +124,23 @@ ls.add_snippets("ruby",
     s("r", fmt("attr_reader :{}", i(0))),
     s("w", fmt("attr_writer :{}", i(0))),
     s("rw", fmt("attr_accessor :{}", i(0))),
+    s("cla",
+      fmt(
+        [[
+        class {}
+          {}
+        end
+        ]], { f(file_name_classified), i(0) }
+      )
+    ),
+    s("mod",
+      fmt(
+        [[
+        class {}
+          {}
+        end
+        ]], { f(file_name_classified), i(0) }
+      )
+    )
   }
 )
