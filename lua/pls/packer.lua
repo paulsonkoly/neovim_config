@@ -41,4 +41,6 @@ return require('packer').startup(function(use)
   }
 
   use 'numToStr/Comment.nvim'
+
+  use 'phaul/shapeshifter.nvim'
 end)
