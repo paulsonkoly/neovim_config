@@ -42,5 +42,8 @@ return require('packer').startup(function(use)
 
   use 'numToStr/Comment.nvim'
 
-  use 'phaul/shapeshifter.nvim'
+  use {
+    'phaul/shapeshifter.nvim',
+    requires = { { 'nvim-treesitter/nvim-treesitter' } }
+  }
 end)
