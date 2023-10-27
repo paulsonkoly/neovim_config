@@ -136,12 +136,25 @@ ls.add_snippets("ruby",
     s("mod",
       fmt(
         [[
-        class {}
+        module {}
           {}
         end
         ]], { f(file_name_classified), i(0) }
       )
     ),
-    s("frozen", t({ "# frozen_string_literal: true", "" }))
+    s("frozen", t({ "# frozen_string_literal: true", "" })),
+    s("def",
+      fmt(
+        [[
+        def {}{}
+          {}
+        end
+        ]], {
+          i(1, "method"),
+          c(2, { { t("("), i(1, "arg"), t(")") }, t("") }),
+          i(0)
+        }
+      )
+    )
   }
 )
