@@ -7,3 +7,5 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { remap = true })
 
 vim.keymap.set("n", "<C-Left>", "<cmd>tabprev<CR>", { remap = true })
 vim.keymap.set("n", "<C-Right>", "<cmd>tabnext<CR>", { remap = true })
+
+vim.keymap.set('n', '<leader>r', require('pls.reload'))
