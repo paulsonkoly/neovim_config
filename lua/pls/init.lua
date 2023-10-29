@@ -9,3 +9,4 @@ vim.opt.colorcolumn = "80"
 vim.opt.hlsearch = false
 vim.opt.hidden = true
 vim.opt.showmode = false
+vim.opt.laststatus = 3
