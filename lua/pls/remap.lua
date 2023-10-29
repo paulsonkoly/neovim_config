@@ -9,3 +9,4 @@ vim.keymap.set("n", "<C-Left>", "<cmd>tabprev<CR>", { remap = true })
 vim.keymap.set("n", "<C-Right>", "<cmd>tabnext<CR>", { remap = true })
 
 vim.keymap.set('n', '<leader>r', require('pls.reload'))
+vim.keymap.set('n', '<leader>x', '<Plug>PlenaryTestFile')

@@ -158,3 +158,26 @@ ls.add_snippets("ruby",
     )
   }
 )
+
+ls.add_snippets("lua",
+  {
+    s("desc",
+      fmt(
+        [[
+        describe("{}", function()
+          {}
+        end)
+        ]], { i(1), i(0) }
+      )
+    ),
+    s("it",
+      fmt(
+        [[
+        it("{}", function()
+          {}
+        end)
+        ]], { i(1), i(0) }
+      )
+    )
+  }
+)
