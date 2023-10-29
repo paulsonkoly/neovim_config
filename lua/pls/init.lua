@@ -10,3 +10,11 @@ vim.opt.hlsearch = false
 vim.opt.hidden = true
 vim.opt.showmode = false
 vim.opt.laststatus = 3
+
+-- disable inline diagnostics text
+-- maps working: gl, [d, ]d
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false
+    }
+)
