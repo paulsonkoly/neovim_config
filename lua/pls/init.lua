@@ -8,3 +8,4 @@ vim.opt.shiftwidth = 2
 vim.opt.colorcolumn = "80"
 vim.opt.hlsearch = false
 vim.opt.hidden = true
+vim.opt.showmode = false
