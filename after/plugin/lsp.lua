@@ -20,6 +20,9 @@ lspconfig.lua_ls.setup {
     }
   }
 }
+lspconfig.gopls.setup{
+  capabilities = capabilities
+}
 
 --
 -- Global mappings.

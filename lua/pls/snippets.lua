@@ -9,7 +9,7 @@ local c = ls.choice_node
 --local d = ls.dynamic_node
 -- local r = ls.restore_node
 -- local l = require("luasnip.extras").lambda
---local rep = require("luasnip.extras").rep
+local rep = require("luasnip.extras").rep
 -- local p = require("luasnip.extras").partial
 -- local m = require("luasnip.extras").match
 -- local n = require("luasnip.extras").nonempty
@@ -177,6 +177,41 @@ ls.add_snippets("lua",
           {}
         end)
         ]], { i(1), i(0) }
+      )
+    )
+  }
+)
+
+local function default_value_of_type(args_string)
+  if (args_string[1][1] == "String") then
+    return '""'
+  elseif (args_string[1][1] == "Bool") then
+    return "false"
+  else
+    return ""
+  end
+end
+
+ls.add_snippets("go",
+  {
+    s("main",
+      fmt(
+        [[
+        package main
+
+        func main () {{
+          {}
+        }}
+        ]], { i(0) }
+      )
+    ),
+    s("flag",
+      fmt('var {} = flag.{}("{}", {}, "{}")',
+        { i(1, "name"),
+          c(2, { t("String"), t("Bool") }),
+          rep(1),
+          f(default_value_of_type, { 2 }),
+          i(3, "description") }
       )
     )
   }
