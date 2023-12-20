@@ -14,8 +14,10 @@ cmp.setup({
     { name = "luasnip" }
   },
   mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
-    ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
+    -- this used to be C-n, C-p but unfortunately C-q/z/p seems to have meaning in docker containers
+    -- and doesn't play nicely with vim
+    ['<C-k>'] = cmp.mapping.select_prev_item(select_opts),
+    ['<C-j>'] = cmp.mapping.select_next_item(select_opts),
 
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
