@@ -213,6 +213,44 @@ ls.add_snippets("go",
           f(default_value_of_type, { 2 }),
           i(3, "description") }
       )
+    ),
+    s("fori",
+      fmt([[
+      for {} := {}; {} < {}; {}++ {{
+        {}
+      }}
+      ]], { i(1, "i"), i(2, "0"), rep(1), i(3), rep(1), i(0) }
+      )
+    ),
+
+    s("forr",
+      fmt([[
+      for {}, {} := range({}) {{
+        {}
+      }}
+      ]], { i(1, "_"), i(2, "e"), i(3), i(0) }
+      )
+    ),
+    s("scan",
+      fmt([[
+      scan := bufio.NewScanner({})
+      for scan.Scan() {{
+        line := scan.Text()
+        {}
+      }}
+      ]], { i(1, "f"), i(0) }
+      )
+    ),
+    s("fopen",
+      fmt([[
+      f, err := os.Open("{}")
+      if err != nil {{
+        log.Fatalln("{}")
+      }}
+      defer f.Close()
+      {}
+      ]], { i(1, "input.txt"), i(2, "input not found"), i(0) }
+      )
     )
   }
 )
