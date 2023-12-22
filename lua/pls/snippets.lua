@@ -245,11 +245,11 @@ ls.add_snippets("go",
       fmt([[
       f, err := os.Open("{}")
       if err != nil {{
-        log.Fatalln("{}")
+        log.Fatalln(err)
       }}
       defer f.Close()
       {}
-      ]], { i(1, "input.txt"), i(2, "input not found"), i(0) }
+      ]], { i(1, "input.txt"), i(0) }
       )
     )
   }
