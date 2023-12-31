@@ -251,6 +251,15 @@ ls.add_snippets("go",
       {}
       ]], { i(1, "input.txt"), i(0) }
       )
+    ),
+    s("ife",
+      fmt([[
+      if err != nil {{
+        {}
+      }}
+      {}
+      ]], { i(1, "log.Fatalln(err)"), i(0) }
+      )
     )
   }
 )
