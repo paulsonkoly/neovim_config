@@ -18,6 +18,10 @@ return require('packer').startup(function(use)
 
   use 'lewis6991/gitsigns.nvim'
 
+  use 'mattn/emmet-vim'
+
+  use 'sebdah/vim-delve'
+
   use 'williamboman/mason.nvim'
 
   -- LSP Support
