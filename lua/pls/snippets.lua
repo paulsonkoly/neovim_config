@@ -8,7 +8,7 @@ local f = ls.function_node
 local c = ls.choice_node
 --local d = ls.dynamic_node
 -- local r = ls.restore_node
--- local l = require("luasnip.extras").lambda
+local l = require("luasnip.extras").lambda
 local rep = require("luasnip.extras").rep
 -- local p = require("luasnip.extras").partial
 -- local m = require("luasnip.extras").match
@@ -187,6 +187,8 @@ local function default_value_of_type(args_string)
     return '""'
   elseif (args_string[1][1] == "Bool") then
     return "false"
+  elseif (args_string[1][1] == "Int") then
+    return "0"
   else
     return ""
   end
@@ -208,7 +210,7 @@ ls.add_snippets("go",
     s("flag",
       fmt('var {} = flag.{}("{}", {}, "{}")',
         { i(1, "name"),
-          c(2, { t("String"), t("Bool") }),
+          c(2, { t("String"), t("Bool"), t("Int") }),
           rep(1),
           f(default_value_of_type, { 2 }),
           i(3, "description") }
@@ -260,6 +262,7 @@ ls.add_snippets("go",
       {}
       ]], { i(1, "log.Fatalln(err)"), i(0) }
       )
-    )
+    ),
+    s("jf", fmt("{} {}`json:\"{}\"`", { i(1), i(0, "string"), l(l._1:gsub("^%u", string.lower), 1) })),
   }
 )
