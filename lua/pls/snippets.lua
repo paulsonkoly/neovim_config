@@ -263,6 +263,6 @@ ls.add_snippets("go",
       ]], { i(1, "log.Fatalln(err)"), i(0) }
       )
     ),
-    s("jf", fmt("{} {}`json:\"{}\"`", { i(1), i(0, "string"), l(l._1:gsub("^%u", string.lower), 1) })),
+    s("jf", fmt("{} {} `json:\"{}\"`", { i(1), i(0, "string"), l(l._1:gsub("^%u", string.lower), 1) })),
   }
 )
