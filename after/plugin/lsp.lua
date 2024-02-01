@@ -23,8 +23,10 @@ lspconfig.lua_ls.setup {
 lspconfig.gopls.setup{
   capabilities = capabilities
 }
+lspconfig.golangci_lint_ls.setup{
+  capabilities = capabilities
+}
 
---
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', 'gl', vim.diagnostic.open_float)
