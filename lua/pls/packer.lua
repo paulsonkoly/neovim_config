@@ -14,11 +14,15 @@ return require('packer').startup(function(use)
 
   use 'nvim-treesitter/playground'
 
+  use 'Myzel394/easytables.nvim'
+
   use 'tpope/vim-fugitive'
 
   use 'lewis6991/gitsigns.nvim'
 
   use 'mattn/emmet-vim'
+
+  use 'TabbyML/vim-tabby'
 
   use 'sebdah/vim-delve'
 
