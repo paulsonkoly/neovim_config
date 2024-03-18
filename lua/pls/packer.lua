@@ -28,6 +28,9 @@ return require('packer').startup(function(use)
 
   use 'williamboman/mason.nvim'
 
+  -- calc
+  use 'paulsonkoly/calc.nvim'
+
   -- LSP Support
   use 'neovim/nvim-lspconfig'
 
