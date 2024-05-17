@@ -7,6 +7,7 @@ capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_c
 
 -- Setup language servers.
 local lspconfig = require('lspconfig')
+local util = require('lspconfig.util')
 lspconfig.solargraph.setup {
   capabilities = capabilities
 }
@@ -21,10 +22,16 @@ lspconfig.lua_ls.setup {
   }
 }
 lspconfig.gopls.setup{
-  capabilities = capabilities
+  capabilities = capabilities,
+  settings = {
+    gopls = {
+      usePlaceholders = true,
+    }
+  }
 }
 lspconfig.golangci_lint_ls.setup{
-  capabilities = capabilities
+  capabilities = capabilities,
+  root_dir = util.root_pattern('go.mod', '.git')
 }
 
 -- Global mappings.
