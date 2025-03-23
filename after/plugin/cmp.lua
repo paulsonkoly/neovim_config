@@ -11,7 +11,9 @@ cmp.setup({
   sources = {
     { name = 'nvim_lsp', keyword_length = 1 },
     { name = 'buffer',   keyword_length = 3 },
-    { name = "luasnip" }
+    { name = 'luasnip' },
+    { name = 'calc' },
+    { name = 'path' },
   },
   mapping = {
     -- this used to be C-n, C-p but unfortunately C-q/z/p seems to have meaning in docker containers
