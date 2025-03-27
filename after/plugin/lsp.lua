@@ -31,6 +31,9 @@ lspconfig.gopls.setup{
 }
 lspconfig.golangci_lint_ls.setup{
   capabilities = capabilities,
+  init_options = {
+    command = { "golangci-lint", "run", "--out-format", "json", "--show-stats=false" }
+  },
   root_dir = util.root_pattern('go.mod', '.git')
 }
 
