@@ -24,9 +24,7 @@ return require('packer').startup(function(use)
 
   use 'mattn/emmet-vim'
 
-  use 'TabbyML/vim-tabby'
-
-  use 'sebdah/vim-delve'
+  use 'MeanderingProgrammer/render-markdown.nvim'
 
   use 'williamboman/mason.nvim'
 
