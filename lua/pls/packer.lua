@@ -31,9 +31,6 @@ return require('packer').startup(function(use)
   -- calc
   use 'paulsonkoly/calc.nvim'
 
-  -- LSP Support
-  use 'neovim/nvim-lspconfig'
-
   -- Autocompletion
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
