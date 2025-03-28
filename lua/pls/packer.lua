@@ -25,6 +25,7 @@ return require('packer').startup(function(use)
   use 'echasnovski/mini.surround'
   use 'echasnovski/mini.notify'
   use 'echasnovski/mini.icons'
+  use 'echasnovski/mini.align'
 
   use 'lewis6991/gitsigns.nvim'
 
