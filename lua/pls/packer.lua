@@ -16,7 +16,13 @@ return require('packer').startup(function(use)
 
   use 'Myzel394/easytables.nvim'
 
-  use 'tpope/vim-fugitive'
+  use({
+    "kdheepak/lazygit.nvim",
+    -- optional for floating window border decoration
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+  })
 
   use "folke/which-key.nvim"
 
