@@ -48,6 +48,11 @@ vim.lsp.config.gopls = {
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
   single_file_support = true,
   root_markers = { ".git", "go.mod" },
+  settings = {
+    gopls = {
+      usePlaceholders = true
+    }
+  }
 }
 vim.lsp.enable("gopls")
 
@@ -62,13 +67,17 @@ vim.lsp.config.golangci_lint_ls = {
 }
 vim.lsp.enable("golangci_lint_ls")
 
+local wk = require("which-key")
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-vim.keymap.set('n', 'gl', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+wk.add({
+  { 'gl', vim.diagnostic.open_float, desc = "diagnostics bubble" },
+  { '[d', vim.diagnostic.goto_prev,  desc = "prev diagnostics" },
+  { ']d', vim.diagnostic.goto_next,  desc = "next diagnostics" },
+})
 -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
@@ -78,25 +87,29 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Enable completion triggered by <c-x><c-o>
     -- vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local opts = { buffer = ev.buf }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-    -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-    -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-    -- vim.keymap.set('n', '<space>wl', function()
-    --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    -- end, opts)
-    -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
-    vim.keymap.set({ 'n', 'v' }, '<F4>', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-    vim.keymap.set('n', '<F3>', function()
-      vim.lsp.buf.format { async = true }
-    end, opts)
+    wk.add({
+      buffer = ev.buf,
+      { 'gD',   vim.lsp.buf.declaration,    desc = "goto declaration" },
+      { 'gd',   vim.lsp.buf.definition,     desc = "goto definition" },
+      { 'K',    vim.lsp.buf.hover,          desc = "hover help" },
+      { 'gi',   vim.lsp.buf.implementation, desc = "goto implementation" },
+      -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+      -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+      -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+      -- vim.keymap.set('n', '<space>wl', function()
+      --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+      -- end, opts)
+      -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+      { '<F2>', vim.lsp.buf.rename,         desc = "lsp rename" },
+      { '<F4>', vim.lsp.buf.code_action,    mode = { 'n', 'v' },         desc = "lsp code action" },
+      { 'gr',   vim.lsp.buf.references,     desc = "goto references" },
+      {
+        '<F3>',
+        function()
+          vim.lsp.buf.format { async = true }
+        end,
+        desc = "lsp reformat"
+      },
+    })
   end,
 })

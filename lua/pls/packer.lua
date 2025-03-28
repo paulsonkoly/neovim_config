@@ -18,7 +18,13 @@ return require('packer').startup(function(use)
 
   use 'tpope/vim-fugitive'
 
-  use 'idanarye/vim-merginal'
+  use "folke/which-key.nvim"
+
+  -- mini
+  use 'echasnovski/mini.ai'
+  use 'echasnovski/mini.surround'
+  use 'echasnovski/mini.notify'
+  use 'echasnovski/mini.icons'
 
   use 'lewis6991/gitsigns.nvim'
 
