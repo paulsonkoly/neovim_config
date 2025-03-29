@@ -64,6 +64,9 @@ vim.lsp.config.golangci_lint_ls = {
     command = { "golangci-lint", "run", "--out-format", "json", "--show-stats=false" }
   },
   root_markers = { ".git", "go.mod" },
+  on_attach = function(_, bufnr)
+    vim.api.nvim_buf_set_option(bufnr, "formatprg", "")
+  end,
 }
 vim.lsp.enable("golangci_lint_ls")
 
