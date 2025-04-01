@@ -1,17 +1,10 @@
 local cmp = require("cmp")
-local luasnip = require("luasnip")
 local select_opts = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end
-  },
   sources = {
     { name = 'nvim_lsp', keyword_length = 1 },
     { name = 'buffer',   keyword_length = 3 },
-    { name = 'luasnip' },
     { name = 'calc' },
     { name = 'path' },
   },
