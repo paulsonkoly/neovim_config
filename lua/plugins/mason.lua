@@ -1,1 +1,7 @@
-return { { 'williamboman/mason.nvim', cmd = 'Mason' } }
+return {
+  {
+    'williamboman/mason.nvim',
+    cmd = 'Mason',
+    config = true,
+  }
+}
