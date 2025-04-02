@@ -1,78 +1,56 @@
-require("mason").setup()
-
-local cmp_nvim_lsp = require('cmp_nvim_lsp')
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
--- capabilities.textDocument.completion.completionItem.snippetSupport = false
-
--- Setup language servers.
-
-vim.lsp.config('*', {
-  capabilities = capabilities,
-  root_markers = { ".git" },
-})
-
-vim.lsp.config.solargraph = {
-  cmd = { "solargraph", "stdio" },
-  filetypes = { "ruby" },
-  init_options = {
-    formatting = true
-  },
-  settings = {
-    solargraph = {
-      diagnostics = true,
-    }
-  },
-}
-vim.lsp.enable('solargraph')
-
-
-vim.lsp.config.lua_ls = {
-  cmd = { "lua-language-server" },
-  filetypes = { "lua" },
-  single_file_support = true,
-  log_level = 2,
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { 'vim' }
-      }
-    }
-  }
-}
-vim.lsp.enable("lua_ls")
-
-
-vim.lsp.config.gopls = {
-  cmd = { "gopls" },
-  filetypes = { "go", "gomod", "gowork", "gotmpl" },
-  single_file_support = true,
-  root_markers = { ".git", "go.mod" },
-  settings = {
-    gopls = {
-      usePlaceholders = true
-    }
-  }
-}
-vim.lsp.enable("gopls")
-
-
-vim.lsp.config.golangci_lint_ls = {
-  cmd = { "golangci-lint-langserver" },
-  filetypes = { "go", "gomod" },
-  init_options = {
-    command = { "golangci-lint", "run", "--out-format", "json", "--show-stats=false" }
-  },
-  root_markers = { ".git", "go.mod" },
-  on_attach = function(_, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, "formatprg", "")
-  end,
-}
-vim.lsp.enable("golangci_lint_ls")
-
 local wk = require("which-key")
 
--- Global mappings.
+wk.add({
+  { "<leader>pv", vim.cmd.Ex,              desc = "Ex file browser" },
+  { "<C-h>",      "<C-w>h",                desc = "Window left" },
+  { "<C-j>",      "<C-w>j",                desc = "Window down" },
+  { "<C-k>",      "<C-w>k",                desc = "Window up" },
+  { "<C-l>",      "<C-w>l",                desc = "Window right" },
+
+  { "<C-Left>",   "<cmd>tabprev<CR>" },
+  { "<C-Right>",  "<cmd>tabnext<CR>" },
+
+  { '<leader>x',  '<Plug>PlenaryTestFile', desc = "Plenary test file" },
+})
+
+-- For whatever reason these don't work via which-key
+vim.keymap.set('c', '<C-a>', "<Home>", { remap = true })
+vim.keymap.set('c', '<C-e>', '<End>', { remap = true })
+-- wk.add({
+--   { "<C-a>", "<Home>", desc = "Move to start of line", mode = "c" },
+--   { "<C-e>", "<End>",  desc = "Move to end of line",   mode = "c" }
+-- })
+--
+
+
+local gs = require('gitsigns')
+gs.setup {
+  on_attach = function(bufnr)
+    wk.add({
+      buffer = bufnr,
+      { '<leader>h',  group = "hunk" },
+      { '<leader>hp', gs.preview_hunk_inline,       desc = "preview hunk" },
+      { '<leader>hu', gs.reset_hunk,                desc = "reset hunk" },
+      { '<leader>hs', gs.stage_hunk,                desc = "stage hunk" },
+      { '<leader>w',  gs.toggle_current_line_blame, desc = "toggle blame" },
+      { '[c',         gs.prev_hunk,                 desc = "previous hunk" },
+      { ']c',         gs.next_hunk,                 desc = "next hunk" },
+    })
+  end
+}
+
+wk.add({
+  { "<leader>g", vim.cmd.LazyGit, desc = "git" }
+})
+
+local tb = require('telescope.builtin')
+wk.add({
+  { '<leader>f',        tb.find_files, desc = "find files" },
+  { '<leader><leader>', tb.live_grep,  desc = "live grep" },
+  { '<leader>b',        tb.buffers,    desc = "buffer" },
+  { '<F1>',             tb.help_tags,  desc = "help tags" },
+})
+
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 wk.add({
   { 'gl', vim.diagnostic.open_float, desc = "diagnostics bubble" },
@@ -82,7 +60,6 @@ wk.add({
 -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
 
--- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),

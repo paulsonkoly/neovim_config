@@ -1,1 +1,2 @@
-require 'pls'
+require('config.lazy')
+require('paul')
