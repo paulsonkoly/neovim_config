@@ -1,5 +1,8 @@
 return {
-  "paulsonkoly/calc.nvim",
-  name = "calc",
-  ft = "calc",
+  {
+    "paulsonkoly/calc.nvim",
+    name = "calc",
+    ft = "calc",
+    config = true,
+  },
 }
