@@ -43,12 +43,19 @@ wk.add({
   { "<leader>g", vim.cmd.LazyGit, desc = "git" }
 })
 
-local tb = require('telescope.builtin')
+local telefun = function(fun)
+  return function()
+    -- reified the require part so telescope can be lazy loaded
+    local tb = require('telescope.builtin')
+    return tb[fun]()
+  end
+end
+
 wk.add({
-  { '<leader>f',        tb.find_files, desc = "find files" },
-  { '<leader><leader>', tb.live_grep,  desc = "live grep" },
-  { '<leader>b',        tb.buffers,    desc = "buffer" },
-  { '<F1>',             tb.help_tags,  desc = "help tags" },
+  { '<leader>f',        telefun('find_files'), desc = "find files" },
+  { '<leader><leader>', telefun('live_grep'),  desc = "live grep" },
+  { '<leader>b',        telefun('buffers'),    desc = "buffer" },
+  { '<F1>',             telefun('help_tags'),  desc = "help tags" },
 })
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
