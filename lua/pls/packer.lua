@@ -34,6 +34,7 @@ return require('packer').startup(function(use)
   use 'echasnovski/mini.align'
 
   use 'lewis6991/gitsigns.nvim'
+  use 'sindrets/diffview.nvim'
 
   use 'mattn/emmet-vim'
 
