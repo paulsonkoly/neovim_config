@@ -1,6 +1,6 @@
 return {
-  'echasnovski/mini.ai',
-  'echasnovski/mini.surround',
+  { 'echasnovski/mini.ai', config = true},
+  { 'echasnovski/mini.surround', config = true},
   {
     'echasnovski/mini.notify',
     config = function(lazy)
@@ -8,5 +8,5 @@ return {
       vim.notify = mn.make_notify()
     end
   },
-  'echasnovski/mini.align',
+  { 'echasnovski/mini.align', config = true},
 }
