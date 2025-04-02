@@ -4,4 +4,5 @@
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
+    cmd = "LazyGit"
   }
