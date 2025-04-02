@@ -1,1 +1,6 @@
-return { 'MeanderingProgrammer/render-markdown.nvim' }
+return {
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    ft = 'markdown'
+  }
+}
