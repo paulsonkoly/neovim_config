@@ -1,6 +1,7 @@
 return {
   'nvim-lualine/lualine.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  -- we have mini icons overriding
+  -- dependencies = { 'nvim-tree/nvim-web-devicons' },
   opts = function()
     return {
       options = {

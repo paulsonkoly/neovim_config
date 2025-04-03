@@ -16,4 +16,11 @@ return {
     end
   },
   { 'echasnovski/mini.align', config = true },
+  {
+    'echasnovski/mini.icons',
+    config = function(lazy)
+      local mi = require(lazy.name)
+      mi.mock_nvim_web_devicons()
+    end
+  },
 }
