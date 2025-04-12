@@ -1,5 +1,5 @@
 -- avoid loading mason just to get these in the path
-vim.env.PATH = vim.fn.stdpath('data') ..  'mason/bin/:' .. vim.env.PATH
+vim.env.PATH = vim.fn.stdpath('data') ..  '/mason/bin/:' .. vim.env.PATH
 
 local cmp_nvim_lsp = require('cmp_nvim_lsp')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
