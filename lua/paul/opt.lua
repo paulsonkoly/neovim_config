@@ -19,4 +19,4 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 vim.filetype.add({ extension = { calc = "calc" } })
 
-vim.cmd.colorscheme "catppuccin-macchiato"
+vim.cmd.colorscheme "gruvbox"
