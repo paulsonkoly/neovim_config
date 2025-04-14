@@ -32,7 +32,7 @@ gs.setup {
       { '<leader>hp', gs.preview_hunk_inline,       desc = "preview hunk" },
       { '<leader>hu', gs.reset_hunk,                desc = "reset hunk" },
       { '<leader>hs', gs.stage_hunk,                desc = "stage hunk" },
-      { '<leader>w',  gs.toggle_current_line_blame, desc = "toggle blame" },
+      { '<leader>hw', gs.toggle_current_line_blame, desc = "toggle blame" },
       { '[c',         gs.prev_hunk,                 desc = "previous hunk" },
       { ']c',         gs.next_hunk,                 desc = "next hunk" },
     })
@@ -52,6 +52,7 @@ local telefun = function(fun)
 end
 
 wk.add({
+  { '<leader>o',        telefun('oldfiles'),   desc = "old files" },
   { '<leader>f',        telefun('find_files'), desc = "find files" },
   { '<leader><leader>', telefun('live_grep'),  desc = "live grep" },
   { '<leader>b',        telefun('buffers'),    desc = "buffer" },
