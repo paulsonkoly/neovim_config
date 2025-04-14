@@ -65,6 +65,26 @@ wk.add({
   { ']d', vim.diagnostic.goto_next,  desc = "next diagnostics" },
 })
 -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+--
+
+wk.add({
+  {
+    '<C-l>',
+    function()
+      vim.snippet.jump(1)
+    end,
+    mode = { 'i', 's' },
+    desc = "snippet next",
+  },
+  {
+    '<C-k>',
+    function()
+      vim.snippet.jump(-1)
+    end,
+    mode = { 'i', 's' },
+    desc = "snippet prev",
+  },
+})
 
 
 -- after the language server attaches to the current buffer
