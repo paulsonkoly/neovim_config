@@ -12,6 +12,7 @@ return {
           { name = 'buffer',   keyword_length = 3 },
           { name = 'calc' },
           { name = 'path' },
+          { name = 'render-markdown'},
         },
         mapping = {
           -- this used to be C-n, C-p but unfortunately C-q/z/p seems to have meaning in docker containers
