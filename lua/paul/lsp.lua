@@ -62,7 +62,7 @@ vim.lsp.config.golangci_lint_ls = {
   cmd = { "golangci-lint-langserver" },
   filetypes = { "go", "gomod" },
   init_options = {
-    command = { "golangci-lint", "run", "--out-format", "json", "--show-stats=false" }
+    command = { "golangci-lint", "run", "--output.json.path", "--show-stats=false" }
   },
   root_markers = { ".git", "go.mod" },
   on_attach = function(_, bufnr)
