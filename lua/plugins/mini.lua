@@ -1,6 +1,6 @@
 return {
-  { 'echasnovski/mini.ai',       config = true },
-  { 'echasnovski/mini.surround', config = true },
+  { 'echasnovski/mini.ai',        config = true },
+  { 'echasnovski/mini.surround',  config = true },
   { 'echasnovski/mini.splitjoin', config = true },
   {
     'echasnovski/mini.notify',
@@ -9,8 +9,9 @@ return {
       mn.setup({
         window = {
           config = {
-            border = "rounded"
+            border = "rounded",
           },
+          winblend = 70,
         },
       })
       vim.notify = mn.make_notify()
