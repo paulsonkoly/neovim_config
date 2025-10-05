@@ -1,5 +1,5 @@
 -- avoid loading mason just to get these in the path
-vim.env.PATH = vim.fn.stdpath('data') ..  '/mason/bin/:' .. vim.env.PATH
+vim.env.PATH = vim.fn.stdpath('data') .. '/mason/bin/:' .. vim.env.PATH
 
 local cmp_nvim_lsp = require('cmp_nvim_lsp')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -57,16 +57,12 @@ vim.lsp.config.gopls = {
 }
 vim.lsp.enable("gopls")
 
-
 vim.lsp.config.golangci_lint_ls = {
   cmd = { "golangci-lint-langserver" },
   filetypes = { "go", "gomod" },
   init_options = {
-    command = { "golangci-lint", "run", "--output.json.path", "--show-stats=false" }
+    command = { "golangci-lint", "run", "--output.json.path", "stdout", "--show-stats=false", "--issues-exit-code=1" },
   },
   root_markers = { ".git", "go.mod" },
-  on_attach = function(_, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, "formatprg", "")
-  end,
 }
 vim.lsp.enable("golangci_lint_ls")
