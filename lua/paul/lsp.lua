@@ -27,7 +27,6 @@ vim.lsp.config.solargraph = {
 }
 vim.lsp.enable('solargraph')
 
-
 vim.lsp.config.lua_ls = {
   cmd = { "lua-language-server" },
   filetypes = { "lua" },
@@ -37,7 +36,10 @@ vim.lsp.config.lua_ls = {
     Lua = {
       diagnostics = {
         globals = { 'vim' }
-      }
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
     }
   }
 }
