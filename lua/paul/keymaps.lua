@@ -52,11 +52,12 @@ local telefun = function(fun)
 end
 
 wk.add({
-  { '<leader>o',        telefun('oldfiles'),   desc = "old files" },
-  { '<leader>f',        telefun('find_files'), desc = "find files" },
-  { '<leader><leader>', telefun('live_grep'),  desc = "live grep" },
-  { '<leader>b',        telefun('buffers'),    desc = "buffer" },
-  { '<F1>',             telefun('help_tags'),  desc = "help tags" },
+  { '<leader>o',        telefun('oldfiles'),                  desc = "old files" },
+  { '<leader>f',        telefun('find_files'),                desc = "find files" },
+  { '<leader><leader>', telefun('live_grep'),                 desc = "live grep" },
+  { '<leader>b',        telefun('buffers'),                   desc = "buffer" },
+  { '<leader>/',        telefun('current_buffer_fuzzy_find'), desc = "find in buffer" },
+  { '<F1>',             telefun('help_tags'),                 desc = "help tags" },
 })
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
