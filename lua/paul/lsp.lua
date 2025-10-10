@@ -1,18 +1,6 @@
 -- avoid loading mason just to get these in the path
 vim.env.PATH = vim.fn.stdpath('data') .. '/mason/bin/:' .. vim.env.PATH
 
-local cmp_nvim_lsp = require('cmp_nvim_lsp')
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
--- capabilities.textDocument.completion.completionItem.snippetSupport = false
-
--- Setup language servers.
-
-vim.lsp.config('*', {
-  capabilities = capabilities,
-  root_markers = { ".git" },
-})
-
 vim.lsp.config.solargraph = {
   cmd = { "solargraph", "stdio" },
   filetypes = { "ruby" },
@@ -44,7 +32,6 @@ vim.lsp.config.lua_ls = {
   }
 }
 vim.lsp.enable("lua_ls")
-
 
 vim.lsp.config.gopls = {
   cmd = { "gopls" },
