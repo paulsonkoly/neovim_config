@@ -23,7 +23,10 @@ vim.lsp.config.lua_ls = {
   settings = {
     Lua = {
       diagnostics = {
-        globals = { 'vim' }
+        globals = { 'vim',
+          -- plenary test stuff
+          "describe", "it", "pending", "before_each", "after_each", "clear",
+        }
       },
       workspace = {
         library = vim.api.nvim_get_runtime_file("", true),
