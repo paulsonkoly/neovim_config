@@ -1,6 +1,6 @@
 {
   "Comment": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
-  "adjust-table.nvim": { "branch": "main", "commit": "45b4e73b9bd32c8aa7cb511a891918e16eb97999" },
+  "adjust-table.nvim": { "branch": "main", "commit": "480355949d8193d714f1589dd03eae34091ebc53" },
   "calc": { "branch": "main", "commit": "72bf8beeda5a2eb781a5fd93f29a068d6a79fb0d" },
   "cmp": { "branch": "main", "commit": "b5311ab3ed9c846b585c0c15b7559be131ec4be9" },
   "cmp-calc": { "branch": "main", "commit": "5947b412da67306c5b68698a02a846760059be2e" },
