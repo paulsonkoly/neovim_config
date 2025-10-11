@@ -19,7 +19,7 @@ local function test_harness()
     error(minimal_init .. " is expected to contain the headless neovim init.")
   end
 
-  require("plenary.test_harness").test_directory(tests_path, {minimal_init = minimal_init})
+  require("plenary.test_harness").test_directory(tests_path, { minimal_init = minimal_init })
 end
 
 
@@ -83,34 +83,20 @@ wk.add({
   { '<F1>',             telefun('help_tags'),                 desc = "help tags" },
 })
 
+local function goto_diag(count)
+  return function()
+    vim.diagnostic.jump({ count = count, float = true })
+  end
+end
+
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 wk.add({
   { 'gl', vim.diagnostic.open_float, desc = "diagnostics bubble" },
-  { '[d', vim.diagnostic.goto_prev,  desc = "prev diagnostics" },
-  { ']d', vim.diagnostic.goto_next,  desc = "next diagnostics" },
+  { '[d', goto_diag(-1),             desc = "prev diagnostics" },
+  { ']d', goto_diag(1),              desc = "next diagnostics" },
 })
 -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 --
-
-wk.add({
-  {
-    '<C-l>',
-    function()
-      vim.snippet.jump(1)
-    end,
-    mode = { 'i', 's' },
-    desc = "snippet next",
-  },
-  {
-    '<C-k>',
-    function()
-      vim.snippet.jump(-1)
-    end,
-    mode = { 'i', 's' },
-    desc = "snippet prev",
-  },
-})
-
 
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
