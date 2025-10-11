@@ -45,7 +45,8 @@ vim.lsp.config.gopls = {
     gopls = {
       usePlaceholders = true
     }
-  }
+  },
+  on_attach = function () vim.opt_local.formatprg = "" end
 }
 vim.lsp.enable("gopls")
 
