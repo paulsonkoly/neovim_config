@@ -1,27 +1,6 @@
 local wk = require("which-key")
 
-local function test_harness()
-  -- figure out the test harness file path
-  local root = vim.fs.root(0, ".git")
-  if not root then
-    error("No .git marker found, can't find test harness.")
-  end
-
-  local tests_path = vim.fs.joinpath(root, "tests")
-  local lstat = vim.uv.fs_lstat(tests_path)
-  if not lstat or lstat.type ~= "directory" then
-    error("Test harness path not found. It is expected at " .. tests_path .. ".")
-  end
-
-  local minimal_init = vim.fs.joinpath(tests_path, "minimal_init.lua")
-  lstat = vim.uv.fs_lstat(minimal_init)
-  if not lstat or lstat.type ~= "file" then
-    error(minimal_init .. " is expected to contain the headless neovim init.")
-  end
-
-  require("plenary.test_harness").test_directory(tests_path, { minimal_init = minimal_init })
-end
-
+local runner = require("run_code")
 
 wk.add({
   { "<leader>pv", vim.cmd.Ex,        desc = "Ex file browser" },
@@ -33,7 +12,7 @@ wk.add({
   { "<C-Left>",   "<cmd>tabprev<CR>" },
   { "<C-Right>",  "<cmd>tabnext<CR>" },
 
-  { '<leader>x',  test_harness,      desc = "Plenary test file" },
+  { '<leader>x',  runner.Run,        desc = "Run file / testsuite" },
 })
 
 -- For whatever reason these don't work via which-key
