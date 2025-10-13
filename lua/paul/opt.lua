@@ -16,5 +16,3 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     virtual_text = false
   }
 )
-
-vim.filetype.add({ extension = { calc = "calc" } })
