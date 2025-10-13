@@ -1,49 +1,31 @@
-local wk = require("which-key")
-
 local runner = require("run_code")
 
-wk.add({
-  { "<leader>pv", vim.cmd.Ex,        desc = "Ex file browser" },
-  { "<C-h>",      "<C-w>h",          desc = "Window left" },
-  { "<C-j>",      "<C-w>j",          desc = "Window down" },
-  { "<C-k>",      "<C-w>k",          desc = "Window up" },
-  { "<C-l>",      "<C-w>l",          desc = "Window right" },
+vim.keymap.set('n', '<leader>x', runner.Run, { desc = "Run file / testsuite" })
 
-  { "<C-Left>",   "<cmd>tabprev<CR>" },
-  { "<C-Right>",  "<cmd>tabnext<CR>" },
+vim.keymap.set('n', "<C-h>", "<C-w>h", { desc = "Window left" })
+vim.keymap.set('n', "<C-j>", "<C-w>j", { desc = "Window down" })
+vim.keymap.set('n', "<C-k>", "<C-w>k", { desc = "Window up" })
+vim.keymap.set('n', "<C-l>", "<C-w>l", { desc = "Window right" })
 
-  { '<leader>x',  runner.Run,        desc = "Run file / testsuite" },
-})
+vim.keymap.set('n', "<S-Left>", "<cmd>tabprev<CR>", { desc = "Tab prev" })
+vim.keymap.set('n', "<S-Right>", "<cmd>tabnext<CR>", { desc = "Tab next" })
 
--- For whatever reason these don't work via which-key
 vim.keymap.set('c', '<C-a>', "<Home>", { remap = true })
 vim.keymap.set('c', '<C-e>', '<End>', { remap = true })
--- wk.add({
---   { "<C-a>", "<Home>", desc = "Move to start of line", mode = "c" },
---   { "<C-e>", "<End>",  desc = "Move to end of line",   mode = "c" }
--- })
---
-
 
 local gs = require('gitsigns')
 gs.setup {
-  on_attach = function(bufnr)
-    wk.add({
-      buffer = bufnr,
-      { '<leader>h',  group = "hunk" },
-      { '<leader>hp', gs.preview_hunk_inline,       desc = "preview hunk" },
-      { '<leader>hu', gs.reset_hunk,                desc = "reset hunk" },
-      { '<leader>hs', gs.stage_hunk,                desc = "stage hunk" },
-      { '<leader>hw', gs.toggle_current_line_blame, desc = "toggle blame" },
-      { '[c',         gs.prev_hunk,                 desc = "previous hunk" },
-      { ']c',         gs.next_hunk,                 desc = "next hunk" },
-    })
+  on_attach = function(_)
+    vim.keymap.set('n', '<leader>hp', gs.preview_hunk_inline, { desc = "preview hunk", buffer = true })
+    vim.keymap.set('n', '<leader>hu', gs.reset_hunk, { desc = "reset hunk", buffer = true })
+    vim.keymap.set('n', '<leader>hs', gs.stage_hunk, { desc = "stage hunk", buffer = true })
+    vim.keymap.set('n', '<leader>hw', gs.toggle_current_line_blame, { desc = "toggle blame", buffer = true })
+    vim.keymap.set('n', '[c', gs.prev_hunk, { desc = "previous hunk", buffer = true })
+    vim.keymap.set('n', ']c', gs.next_hunk, { desc = "next hunk", buffer = true })
   end
 }
 
-wk.add({
-  { "<leader>g", vim.cmd.LazyGit, desc = "git" }
-})
+vim.keymap.set('n', "<leader>g", vim.cmd.LazyGit, { desc = "git" })
 
 local telefun = function(fun)
   return function()
@@ -53,14 +35,12 @@ local telefun = function(fun)
   end
 end
 
-wk.add({
-  { '<leader>o',        telefun('oldfiles'),                  desc = "old files" },
-  { '<leader>f',        telefun('find_files'),                desc = "find files" },
-  { '<leader><leader>', telefun('live_grep'),                 desc = "live grep" },
-  { '<leader>b',        telefun('buffers'),                   desc = "buffer" },
-  { '<leader>/',        telefun('current_buffer_fuzzy_find'), desc = "find in buffer" },
-  { '<F1>',             telefun('help_tags'),                 desc = "help tags" },
-})
+vim.keymap.set('n', '<leader>o', telefun('oldfiles'), { desc = "old files" })
+vim.keymap.set('n', '<leader>f', telefun('find_files'), { desc = "find files" })
+vim.keymap.set('n', '<leader><leader>', telefun('live_grep'), { desc = "live grep" })
+vim.keymap.set('n', '<leader>b', telefun('buffers'), { desc = "buffer" })
+vim.keymap.set('n', '<leader>/', telefun('current_buffer_fuzzy_find'), { desc = "find in buffer" })
+vim.keymap.set('n', '<F1>', telefun('help_tags'), { desc = "help tags" })
 
 local function goto_diag(count)
   return function()
@@ -69,44 +49,37 @@ local function goto_diag(count)
 end
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-wk.add({
-  { 'gl', vim.diagnostic.open_float, desc = "diagnostics bubble" },
-  { '[d', goto_diag(-1),             desc = "prev diagnostics" },
-  { ']d', goto_diag(1),              desc = "next diagnostics" },
-})
+vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = "diagnostics bubble" })
+vim.keymap.set('n', '[d', goto_diag(-1), { desc = "prev diagnostics" })
+vim.keymap.set('n', ']d', goto_diag(1), { desc = "next diagnostics" })
 -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 --
 
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-  callback = function(ev)
+  callback = function(_)
     -- Enable completion triggered by <c-x><c-o>
     -- vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-
-    wk.add({
-      buffer = ev.buf,
-      { 'gD',   vim.lsp.buf.declaration,    desc = "goto declaration" },
-      { 'gd',   vim.lsp.buf.definition,     desc = "goto definition" },
-      { 'K',    vim.lsp.buf.hover,          desc = "hover help" },
-      { 'gi',   vim.lsp.buf.implementation, desc = "goto implementation" },
-      -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-      -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-      -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-      -- vim.keymap.set('n', '<space>wl', function()
-      --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-      -- end, opts)
-      -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-      { '<F2>', vim.lsp.buf.rename,         desc = "lsp rename" },
-      { '<F4>', vim.lsp.buf.code_action,    mode = { 'n', 'v' },         desc = "lsp code action" },
-      { 'gr',   vim.lsp.buf.references,     desc = "goto references" },
-      {
-        '<F3>',
-        function()
-          vim.lsp.buf.format { async = true }
-        end,
-        desc = "lsp reformat"
-      },
-    })
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = "goto declaration", buffer = true })
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "goto definition", buffer = true })
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = "hover help", buffer = true })
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = "goto implementation", buffer = true })
+    -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+    -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+    -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+    -- vim.keymap.set('n', '<space>wl', function()
+    --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    -- end, opts)
+    -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, { desc = "lsp rename", buffer = true })
+    vim.keymap.set({ 'n', 'v' }, '<F4>', vim.lsp.buf.code_action,
+      { buffer = true, desc = "lsp code action" })
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, { desc = "goto references", buffer = true })
+    vim.keymap.set('n', '<F3>',
+      function()
+        vim.lsp.buf.format { async = true }
+      end,
+      { desc = "lsp reformat", buffer = true })
   end,
 })
