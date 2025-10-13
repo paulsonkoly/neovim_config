@@ -1,7 +1,7 @@
 {
   "Comment": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
   "adjust-table.nvim": { "branch": "main", "commit": "480355949d8193d714f1589dd03eae34091ebc53" },
-  "calc": { "branch": "main", "commit": "72bf8beeda5a2eb781a5fd93f29a068d6a79fb0d" },
+  "calc": { "branch": "main", "commit": "3c11704a8cc8bbbc20aaf1a07f2587ec50efa93d" },
   "cmp": { "branch": "main", "commit": "b5311ab3ed9c846b585c0c15b7559be131ec4be9" },
   "cmp-calc": { "branch": "main", "commit": "5947b412da67306c5b68698a02a846760059be2e" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "bd5a7d6db125d4654b50eeae9f5217f24bb22fd3" },
@@ -14,7 +14,7 @@
   "lualine.nvim": { "branch": "master", "commit": "b8c23159c0161f4b89196f74ee3a6d02cdc3a955" },
   "mason.nvim": { "branch": "main", "commit": "ad7146aa61dcaeb54fa900144d768f040090bff0" },
   "mini.ai": { "branch": "main", "commit": "11c57180bc9084089206e211ac7aa598bedc9673" },
-  "mini.align": { "branch": "main", "commit": "94af41078e61fbe42ec79f87e67d69c529d3c40a" },
+  "mini.align": { "branch": "main", "commit": "f42eeb70232fbc4761f2d895a173b117bfd11541" },
   "mini.icons": { "branch": "main", "commit": "284798619aed9f4c1ac1b9417b9a5e3b4b85ef3a" },
   "mini.notify": { "branch": "main", "commit": "7f3c4f05bb647bd2b8cb216c18db1768afe39ee0" },
   "mini.splitjoin": { "branch": "main", "commit": "b0d57bb5d1ed154e5902ae2745f1a320a7642443" },
