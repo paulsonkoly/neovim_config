@@ -3,8 +3,6 @@
 -- runs plenary test_directory on it.
 local M = {}
 
-local pt = require("plenary.test_harness")
-
 function M.Match()
   -- figure out the test harness file path
   local root = vim.fs.root(0, ".git")
@@ -33,6 +31,7 @@ function M.Match()
 end
 
 function M.Run()
+  local pt = require("plenary.test_harness")
   pt.test_directory(M._tests_path, { minimal_init = M._minimal_init })
 end
 
