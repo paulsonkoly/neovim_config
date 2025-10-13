@@ -1,5 +1,9 @@
 local runner = require("run_code")
 
+vim.keymap.set('n', '-',
+  function() vim.api.nvim_command("Oil") end,
+  { desc = "oil" })
+
 vim.keymap.set('n', '<leader>x', runner.Run, { desc = "Run file / testsuite" })
 
 vim.keymap.set('n', "<C-h>", "<C-w>h", { desc = "Window left" })
