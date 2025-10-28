@@ -52,12 +52,20 @@ local function goto_diag(count)
   end
 end
 
+local function goto_snip(count)
+  return function()
+    vim.snippet.jump(count)
+  end
+end
+
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = "diagnostics bubble" })
 vim.keymap.set('n', '[d', goto_diag(-1), { desc = "prev diagnostics" })
 vim.keymap.set('n', ']d', goto_diag(1), { desc = "next diagnostics" })
 -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
---
+
+vim.keymap.set({ 'i', 's' }, "<C-l>", goto_snip(1), { desc = "next in snippet" })
+vim.keymap.set({ 'i', 's' }, "<C-k>", goto_snip(-1), { desc = "prev in snippet" })
 
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
