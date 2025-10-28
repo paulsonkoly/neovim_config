@@ -1,20 +1,6 @@
 -- avoid loading mason just to get these in the path
 vim.env.PATH = vim.fn.stdpath('data') .. '/mason/bin/:' .. vim.env.PATH
 
-vim.lsp.config.solargraph = {
-  cmd = { "solargraph", "stdio" },
-  filetypes = { "ruby" },
-  init_options = {
-    formatting = true
-  },
-  settings = {
-    solargraph = {
-      diagnostics = true,
-    }
-  },
-}
-vim.lsp.enable('solargraph')
-
 vim.lsp.config.lua_ls = {
   cmd = { "lua-language-server" },
   filetypes = { "lua" },
@@ -59,3 +45,10 @@ vim.lsp.config.golangci_lint_ls = {
   root_markers = { ".git", "go.mod" },
 }
 vim.lsp.enable("golangci_lint_ls")
+
+vim.lsp.config.pbls = {
+  cmd = { "pbls" },
+  filetypes = { "proto" },
+  single_file_support = true,
+}
+vim.lsp.enable("pbls")
