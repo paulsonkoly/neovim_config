@@ -31,21 +31,6 @@ gs.setup {
 
 vim.keymap.set('n', "<leader>g", vim.cmd.LazyGit, { desc = "git" })
 
-local telefun = function(fun)
-  return function()
-    -- reified the require part so telescope can be lazy loaded
-    local tb = require('telescope.builtin')
-    return tb[fun]()
-  end
-end
-
-vim.keymap.set('n', '<leader>o', telefun('oldfiles'), { desc = "old files" })
-vim.keymap.set('n', '<leader>f', telefun('find_files'), { desc = "find files" })
-vim.keymap.set('n', '<leader><leader>', telefun('live_grep'), { desc = "live grep" })
-vim.keymap.set('n', '<leader>b', telefun('buffers'), { desc = "buffer" })
-vim.keymap.set('n', '<leader>/', telefun('current_buffer_fuzzy_find'), { desc = "find in buffer" })
-vim.keymap.set('n', '<F1>', telefun('help_tags'), { desc = "help tags" })
-
 local function goto_diag(count)
   return function()
     vim.diagnostic.jump({ count = count, float = true })
