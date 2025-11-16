@@ -4,6 +4,8 @@ return {
     opts = {},
     -- Optional dependencies
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
-    cmd = 'Oil',
+    keys = {
+      {"-", "<cmd>Oil<CR>", desc= "oil"},
+    },
   },
 }

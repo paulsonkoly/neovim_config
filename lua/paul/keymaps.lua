@@ -1,9 +1,5 @@
 local runner = require("run_code")
 
-vim.keymap.set('n', '-',
-  function() vim.api.nvim_command("Oil") end,
-  { desc = "oil" })
-
 vim.keymap.set('n', '<leader>x', runner.Run, { desc = "Run file / testsuite" })
 
 vim.keymap.set('n', "<C-h>", "<C-w>h", { desc = "Window left" })
@@ -28,8 +24,6 @@ gs.setup {
     vim.keymap.set('n', ']c', gs.next_hunk, { desc = "next hunk", buffer = true })
   end
 }
-
-vim.keymap.set('n', "<leader>g", vim.cmd.LazyGit, { desc = "git" })
 
 local function goto_diag(count)
   return function()
