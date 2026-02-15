@@ -4,7 +4,15 @@ return {
   -- dependencies = { "nvim-tree/nvim-web-devicons" },
   -- or if using mini.icons/mini.nvim
   dependencies = { "nvim-mini/mini.icons" },
-  opts = {},
+  opts = {
+    keymap = {
+      builtin = {
+        true, -- inherit from defaults
+        ["<C-d>"] = "preview-page-down",
+        ["<C-u>"] = "preview-page-up",
+      },
+    },
+  },
   keys = {
     { '<leader>f',        '<cmd>FzfLua files<cr>',        desc = "files" },
     { '<leader>o',        '<cmd>FzfLua oldfiles<cr>',     desc = "old files" },
