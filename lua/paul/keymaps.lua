@@ -2,11 +2,6 @@ local runner = require("run_code")
 
 vim.keymap.set('n', '<leader>x', runner.Run, { desc = "Run file / testsuite" })
 
-vim.keymap.set('n', "<C-h>", "<C-w>h", { desc = "Window left" })
-vim.keymap.set('n', "<C-j>", "<C-w>j", { desc = "Window down" })
-vim.keymap.set('n', "<C-k>", "<C-w>k", { desc = "Window up" })
-vim.keymap.set('n', "<C-l>", "<C-w>l", { desc = "Window right" })
-
 vim.keymap.set('n', "<S-Left>", "<cmd>tabprev<CR>", { desc = "Tab prev" })
 vim.keymap.set('n', "<S-Right>", "<cmd>tabnext<CR>", { desc = "Tab next" })
 
