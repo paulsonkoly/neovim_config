@@ -24,7 +24,7 @@ vim.lsp.enable("lua_ls")
 
 vim.lsp.config.gopls = {
   cmd = { "gopls" },
-  filetypes = { "go", "gomod", "gowork", "gotmpl" },
+  filetypes = { "go", "gomod" },
   single_file_support = true,
   root_markers = { ".git", "go.mod" },
   settings = {
