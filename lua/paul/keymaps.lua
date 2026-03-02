@@ -1,6 +1,8 @@
 local runner = require("run_code")
-
 vim.keymap.set('n', '<leader>x', runner.Run, { desc = "Run file / testsuite" })
+
+local fen = require("chess.fen")
+vim.keymap.set("v", "gf", fen.open, { silent = true })
 
 vim.keymap.set('n', "<S-Left>", "<cmd>tabprev<CR>", { desc = "Tab prev" })
 vim.keymap.set('n', "<S-Right>", "<cmd>tabnext<CR>", { desc = "Tab next" })

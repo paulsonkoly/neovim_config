@@ -1,4 +1,6 @@
-local function open_fen_on_lichess()
+local M = {}
+
+function M.open()
   local bufnr = 0
 
   local start = vim.fn.getpos("v")
@@ -28,20 +30,19 @@ local function open_fen_on_lichess()
   local board = parts[1]
   local turn = parts[2]
   local castling = parts[3]
-  local ep = parts[4]
+  local en_passant = parts[4]
   local halfmove = parts[5]
   local fullmove = parts[6]
 
-  -- local color = (turn == "w") and "white" or "black"
   local color = "white"
 
   local url = string.format(
     "https://lichess.org/editor/%s_%s_%s_%s_%s_%s?color=%s",
-    board, turn, castling, ep, halfmove, fullmove, color
+    board, turn, castling, en_passant, halfmove, fullmove, color
   )
 
-  vim.fn["netrw#BrowseX"](url, 0)
+  vim.ui.open(url)
 end
 
--- Create a visual mode mapping
-vim.keymap.set("v", "gf", open_fen_on_lichess, { silent = true })
+return M
+
