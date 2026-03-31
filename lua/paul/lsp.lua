@@ -52,3 +52,10 @@ vim.lsp.config.pbls = {
   single_file_support = true,
 }
 vim.lsp.enable("pbls")
+
+vim.lsp.config.clangd = {
+  cmd = { "clangd" },
+  filetypes = { "cpp", "c" },
+  root_markers = { ".git" },
+}
+vim.lsp.enable("clangd")
